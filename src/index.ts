@@ -1,9 +1,18 @@
+import * as p5 from 'p5';
+
 import './style.css';
 
-const button: HTMLElement | null = document.querySelector('#button');
+const sketch = (p: p5) => {
 
-button?.addEventListener('click', () => {
-    const p: HTMLParagraphElement = document.createElement('p');
-    p.innerHTML = 'Haha!'
-    document.body.appendChild(p);
-});
+    p.setup = () => {
+        p.createCanvas(100,100);
+    }
+
+    p.draw = () => {
+        p.background(0);
+    }
+
+}
+
+const game = new p5(sketch);
+
