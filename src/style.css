@@ -1,3 +1,19 @@
-h1 {
-    color: 'red',
+html, body { 
+    width: 100%; 
+    min-height: 100%; 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+    background-color: black;
+} 
+
+#canvas-hold {
+    margin: 0;
+    padding: 0;
+}
+
+#canvas-hold canvas {
+    display:block;
+    margin: 0;
+    padding: 0;
 }
