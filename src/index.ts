@@ -1,13 +1,25 @@
 import * as p5 from 'p5';
-
 import 'normalize.css';
 
 import './style.css';
 
-const adjustCanvas = (p: p5, cnv: p5.Renderer) => {
+const drawTextAtScale = (p: p5, scale: number, text: string, x: number, y: number, x2?: number, y2?: number) => {
+    
+    // save original size of the text
+    const originalSize = p.textSize();
 
-    // find smaller side length of window
-    const side = p.windowWidth > p.windowHeight ? p.windowHeight : p.windowWidth;
+    // adjust based on scale
+    p.textSize(originalSize*scale);
+
+    // draw text
+    p.text(text, x, y, x2, y2);
+
+    // return to original size
+    p.textSize(originalSize);
+
+}
+
+const adjustCanvas = (p: p5, cnv: p5.Renderer, side: number) => {
     
     // resize to square, don't redraw
     p.resizeCanvas(side, side, true);
@@ -19,25 +31,54 @@ const adjustCanvas = (p: p5, cnv: p5.Renderer) => {
 
 }
 
+const scaleGame = (p: p5, cnv: p5.Renderer) => {
+    
+    // find smaller side length of window
+    const side = p.windowWidth > p.windowHeight ? p.windowHeight : p.windowWidth;
+
+    // adjust canvas size and position
+    adjustCanvas(p, cnv, side);
+
+    // adjust font size
+    p.textSize(side/30);
+}
+
 const sketch = (p: p5) => {
 
-    // store ref to canvas object
+    // store refs
     let cnv: p5.Renderer;
+    let font: p5.Font;
+
+    p.preload = () => {
+        font = p.loadFont('/homespun.ttf');
+    }
 
     p.setup = () => {
-        // create canvas, place in div, and adjust size
+
+        // create canvas, place in div
         cnv = p.createCanvas(0,0);
         cnv.parent('canvas-hold');
-        adjustCanvas(p, cnv);
+
+        //set font
+        p.textFont(font);
+
+        // scale game elements to window size
+        scaleGame(p, cnv);
+
     }
 
     p.windowResized = () => {
-        // adjust canvas whenever window is adjusted
-        adjustCanvas(p, cnv);
+        // scale game elements to window size
+        scaleGame(p, cnv);
     }
 
     p.draw = () => {
         p.background(255);
+        p.textAlign(p.CENTER, p.CENTER);
+
+        drawTextAtScale(p, 0.5, 'Half', p.width/2, p.height/4);
+
+        p.text('Test', p.width/2, p.height/2);
     }
 
 }
