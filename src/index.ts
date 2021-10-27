@@ -3,6 +3,8 @@ import 'normalize.css';
 
 import './style.css';
 
+import * as Engine from './engine';
+
 const drawTextAtScale = (p: p5, scale: number, text: string, x: number, y: number, x2?: number, y2?: number) => {
     
     // save original size of the text
@@ -21,7 +23,7 @@ const drawTextAtScale = (p: p5, scale: number, text: string, x: number, y: numbe
 
 const adjustCanvas = (p: p5, cnv: p5.Renderer, side: number) => {
     
-    // resize to square, don't redraw
+    // resize to max possible square, don't redraw
     p.resizeCanvas(side, side, true);
 
     // center canvas on page
@@ -41,6 +43,7 @@ const scaleGame = (p: p5, cnv: p5.Renderer) => {
 
     // adjust font size
     p.textSize(side/30);
+
 }
 
 const sketch = (p: p5) => {
@@ -85,3 +88,12 @@ const sketch = (p: p5) => {
 
 // create game instance of p5
 const game = new p5(sketch);
+
+console.log(Engine);
+
+let myObject = new Engine.GameObject(10,10, 50, 40);
+
+console.log(myObject);
+console.log(myObject.left);
+console.log(myObject.position.direction()/Math.PI);
+console.log(myObject.position.magnitude());
