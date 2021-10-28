@@ -3,7 +3,7 @@ import 'normalize.css';
 
 import './style.css';
 
-import * as Engine from './engine';
+import * as Engine from './engine/core';
 
 const drawTextAtScale = (p: p5, scale: number, text: string, x: number, y: number, x2?: number, y2?: number) => {
     

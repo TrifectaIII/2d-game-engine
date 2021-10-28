@@ -1,5 +1,10 @@
 // Game Engine Essentials
 
+// Game Constants
+export const GAME_WIDTH = 1000;
+export const GAME_HEIGHT = 1000;
+
+// 2D Vector Class
 export class Vector {
     x: number;
     y: number;
@@ -25,6 +30,7 @@ export class Vector {
     }
 }
 
+// 2D GameObject Class woth position and AABB
 export class GameObject {
     position: Vector;
     width: number;
