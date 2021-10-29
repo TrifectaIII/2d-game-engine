@@ -3,7 +3,8 @@ import 'normalize.css';
 
 import './style.css';
 
-import * as Engine from './engine/core';
+import * as Core from './engine/core';
+import * as Utility from './engine/utility';
 
 const drawTextAtScale = (p: p5, scale: number, text: string, x: number, y: number, x2?: number, y2?: number) => {
     
@@ -89,11 +90,15 @@ const sketch = (p: p5) => {
 // create game instance of p5
 const game = new p5(sketch);
 
-console.log(Engine);
+// console.log(Core);
 
-let myObject = new Engine.GameObject(10,10, 50, 40);
+// let myObject = new Core.GameObject(10, 10, 50, 40);
 
-console.log(myObject);
-console.log(myObject.left);
-console.log(myObject.position.direction()/Math.PI);
-console.log(myObject.position.magnitude());
+// console.log(myObject);
+// console.log(myObject.left);
+// console.log(myObject.position.direction()/Math.PI);
+// console.log(myObject.position.magnitude());
+
+// for (let i=0; i<100; i++) {
+//     console.log(Utility.randint(1,10));
+// }

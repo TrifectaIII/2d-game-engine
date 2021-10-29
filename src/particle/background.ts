@@ -1,9 +1,32 @@
 import * as p5 from 'p5';
-import * as Engine from '../engine/core';
+
+import * as Core from '../engine/core';
+import * as Utility from '../engine/utility';
 
 interface Star {
     proximity: number,
-    position: Engine.Vector,
+    position: Core.Vector,
+}
+
+class Star {
+    proximity: number;
+    position: Core.Vector;
+
+    constructor() {
+        this.proximity = Math.random() * 9 + 1;
+        this.position = new Core.Vector(
+            Utility.rand(0, Core.GAME_WIDTH),
+            Core.GAME_HEIGHT * -0.1,
+        );
+    }
+
+    update() {
+
+    }
+
+    draw (p: p5) {
+
+    }
 }
 
 export class Background {
@@ -13,25 +36,19 @@ export class Background {
         this.stars = [];
     }
 
-    draw(p: p5) {
-
-    }
-
-    next() {
+    update() {
 
         // create a new star
-        this.stars.push({
-            proximity: Math.random() * 9 + 1,
-            position: new Engine.Vector(
-                Math.random() * Engine.GAME_WIDTH,
-                Engine.GAME_HEIGHT,
-            ),
-        } as Star);
+        this.stars.push(new Star());
 
         // update all stars
         this.stars.forEach((star: Star) => {
-            star
+            star.update();
         });
+
+    }
+
+    draw(p: p5) {
 
     }
 }
