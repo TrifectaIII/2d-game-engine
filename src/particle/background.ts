@@ -3,11 +3,6 @@ import * as p5 from 'p5';
 import * as Core from '../engine/core';
 import * as Utility from '../engine/utility';
 
-interface Star {
-    proximity: number,
-    position: Core.Vector,
-}
-
 class Star {
     proximity: number;
     position: Core.Vector;
