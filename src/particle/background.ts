@@ -8,7 +8,7 @@ class Star {
     position: Core.Vector;
 
     constructor() {
-        this.proximity = Math.random() * 9 + 1;
+        this.proximity = Utility.rand(1,7);
         this.position = new Core.Vector(
             Utility.rand(0, Core.GAME_WIDTH),
             Core.GAME_HEIGHT * -0.1,
@@ -16,12 +16,20 @@ class Star {
     }
 
     update() {
-
+        this.position.y += this.proximity;
     }
 
     draw (p: p5) {
-
+        p.push();
+        p.fill('black');
+        p.circle(this.position.x, this.position.y, this.proximity);
+        p.pop();
     }
+
+    finished(): boolean {
+        return this.position.y > Core.GAME_HEIGHT * 1.1;
+    }
+
 }
 
 export class Background {
@@ -34,16 +42,21 @@ export class Background {
     update() {
 
         // create a new star
-        this.stars.push(new Star());
+        if (Utility.rand(0,1) < 0.3) this.stars.push(new Star());
 
         // update all stars
         this.stars.forEach((star: Star) => {
             star.update();
         });
 
+        // delete stars that have finished
+        this.stars = this.stars.filter((star: Star) => !star.finished());
+
     }
 
     draw(p: p5) {
+
+        this.stars.forEach((star: Star) => star.draw(p));
 
     }
 }

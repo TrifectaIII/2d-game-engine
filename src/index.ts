@@ -5,6 +5,7 @@ import './style.css';
 
 import * as Core from './engine/core';
 import * as Utility from './engine/utility';
+import {Background} from './particle/background';
 
 const drawTextAtScale = (p: p5, scale: number, text: string, x: number, y: number, x2?: number, y2?: number) => {
     
@@ -52,6 +53,7 @@ const sketch = (p: p5) => {
     // store refs
     let cnv: p5.Renderer;
     let font: p5.Font;
+    let background: Background;
 
     p.preload = () => {
         font = p.loadFont('/homespun.ttf');
@@ -69,6 +71,9 @@ const sketch = (p: p5) => {
         // scale game elements to window size
         scaleGame(p, cnv);
 
+        // Create background
+        background = new Background();
+
     }
 
     p.windowResized = () => {
@@ -77,12 +82,17 @@ const sketch = (p: p5) => {
     }
 
     p.draw = () => {
+
         p.background(255);
         p.textAlign(p.CENTER, p.CENTER);
 
         drawTextAtScale(p, 0.5, 'Half', p.width/2, p.height/4);
 
         p.text('Test', p.width/2, p.height/2);
+
+        background.update();
+        background.draw(p);
+        // console.log(background.stars.length);
     }
 
 }
