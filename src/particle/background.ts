@@ -3,7 +3,7 @@ import * as p5 from 'p5';
 import * as Core from '../engine/core';
 import * as Utility from '../engine/utility';
 
-const SIZE_SCALE = 2.5; // Multiplicative factor for star size
+const SIZE_SCALE = 4; // Multiplicative factor for star size
 const SPEED_SCALE = 15; // Multiplicative factor for star speed
 const SPAWN_RATE = 0.75; // Decimal value for freqency of star spawning (0 to 1)
 

@@ -57,16 +57,16 @@ export class GameObject {
     }
 
     get top(): number {
-        return this.position.y + this.width/2;
+        return this.position.y - this.width/2;
     }
     set top(value: number) {
-        this.position.y = value - this.width/2;
+        this.position.y = value + this.width/2;
     }
 
     get bottom(): number {
-        return this.position.y - this.width/2;
+        return this.position.y + this.width/2;
     }
     set bottom(value: number) {
-        this.position.y = value + this.width/2;
+        this.position.y = value - this.width/2;
     }
 }
