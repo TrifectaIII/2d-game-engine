@@ -19,6 +19,12 @@ export class Vector {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
+    normalize(): Vector {
+        // returns a normalized version of this vector
+        const mag = this.magnitude();
+        return new Vector(this.x / mag, this.y / mag);
+    }
+
     direction(): number {
         // returns the direction of the vector in radians
         return Math.atan2(this.y, this.x);
@@ -27,6 +33,20 @@ export class Vector {
     scale(factor: number): Vector {
         // returns a new vector scaled by the factor.
         return new Vector(this.x * factor, this.y * factor);
+    }
+
+    reverse(): Vector {
+        // returns a reversed version of this vector
+        return this.scale(-1);
+    }
+
+    add(other: Vector): Vector {
+        // returns a new vector equal to this vector added to another vector
+        // combine with reverse method to subtract
+        return new Vector(
+            this.x + other.x,
+            this.y + other.y,
+        );
     }
 }
 
@@ -40,6 +60,15 @@ export class GameObject {
         this.position = new Vector(x,y);
         this.width = width;
         this.height = height;
+    }
+
+    collides(other: GameObject): boolean {
+        return (
+            this.top < other.bottom &&
+            other.top < this.bottom &&
+            this.left < other.right &&
+            other.left < this.right
+        );
     }
 
     get right(): number {
