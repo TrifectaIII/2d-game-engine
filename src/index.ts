@@ -7,22 +7,6 @@ import * as Core from './engine/core';
 import * as Utility from './engine/utility';
 import {Background} from './particle/background';
 
-const drawTextAtScale = (p: p5, scale: number, text: string, x: number, y: number, x2?: number, y2?: number) => {
-    
-    // save original size of the text
-    const originalSize = p.textSize();
-
-    // adjust based on scale
-    p.textSize(originalSize*scale);
-
-    // draw text
-    p.text(text, x, y, x2, y2);
-
-    // return to original size
-    p.textSize(originalSize);
-
-}
-
 const adjustCanvas = (p: p5, cnv: p5.Renderer, side: number) => {
     
     // resize to max possible square, don't redraw
@@ -54,6 +38,8 @@ const sketch = (p: p5) => {
     let cnv: p5.Renderer;
     let font: p5.Font;
     let background: Background;
+    let other: Core.GameObject;
+    let player: Core.GameObject;
 
     p.preload = () => {
         font = p.loadFont('/homespun.ttf');
@@ -74,6 +60,10 @@ const sketch = (p: p5) => {
         // Create background
         background = new Background();
 
+        // Create gameobjects for testing
+        other = new Core.GameObject(p.width/2, p.height/2, 100, 100);
+        player = new Core.GameObject(p.width/2, p.height/2, 50, 50);
+
     }
 
     p.windowResized = () => {
@@ -83,32 +73,38 @@ const sketch = (p: p5) => {
 
     p.draw = () => {
 
+        player.position.x = p.mouseX;
+        player.position.y = p.mouseY;
+
         p.background(255);
-        p.textAlign(p.CENTER, p.CENTER);
-
-        drawTextAtScale(p, 0.5, 'Half', p.width/2, p.height/4);
-
-        p.text('Test', p.width/2, p.height/2);
 
         background.update();
         background.draw(p);
-        // console.log(background.stars.length);
+
+        p.fill('white');
+
+        p.rectMode(p.CORNERS);
+        p.rect(
+            other.left,
+            other.top,
+            other.right,
+            other.bottom,
+        );
+        
+        if (other.collides(player)) {
+            p.fill('red');
+        }
+        
+        p.rectMode(p.CORNERS);
+        p.rect(
+            player.left,
+            player.top,
+            player.right,
+            player.bottom,
+        );
     }
 
 }
 
 // create game instance of p5
 const game = new p5(sketch);
-
-// console.log(Core);
-
-// let myObject = new Core.GameObject(10, 10, 50, 40);
-
-// console.log(myObject);
-// console.log(myObject.left);
-// console.log(myObject.position.direction()/Math.PI);
-// console.log(myObject.position.magnitude());
-
-// for (let i=0; i<100; i++) {
-//     console.log(Utility.randint(1,10));
-// }

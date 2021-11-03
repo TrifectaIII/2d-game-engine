@@ -43,10 +43,7 @@ export class Vector {
     add(other: Vector): Vector {
         // returns a new vector equal to this vector added to another vector
         // combine with reverse method to subtract
-        return new Vector(
-            this.x + other.x,
-            this.y + other.y,
-        );
+        return new Vector(this.x + other.x, this.y + other.y);
     }
 }
 
@@ -56,6 +53,18 @@ export class GameObject {
     width: number;
     height: number;
 
+    get right(): number {return this.position.x + this.width/2};
+    set right(value: number) {this.position.x = value - this.width/2};
+
+    get left(): number {return this.position.x - this.width/2};
+    set left(value: number) {this.position.x = value + this.width/2};
+
+    get top(): number {return this.position.y - this.height/2};
+    set top(value: number) {this.position.y = value + this.height/2};
+
+    get bottom(): number {return this.position.y + this.height/2};
+    set bottom(value: number) {this.position.y = value - this.height/2};
+
     constructor(x: number, y: number, width: number, height: number) {
         this.position = new Vector(x,y);
         this.width = width;
@@ -64,38 +73,10 @@ export class GameObject {
 
     collides(other: GameObject): boolean {
         return (
-            this.top < other.bottom &&
-            other.top < this.bottom &&
             this.left < other.right &&
-            other.left < this.right
+            other.left < this.right &&
+            this.top < other.bottom &&
+            other.top < this.bottom
         );
-    }
-
-    get right(): number {
-        return this.position.x + this.width/2;
-    }
-    set right(value: number) {
-        this.position.x = value - this.width/2;
-    }
-
-    get left(): number {
-        return this.position.x - this.width/2;
-    }
-    set left(value: number) {
-        this.position.x = value + this.width/2;
-    }
-
-    get top(): number {
-        return this.position.y - this.width/2;
-    }
-    set top(value: number) {
-        this.position.y = value + this.width/2;
-    }
-
-    get bottom(): number {
-        return this.position.y + this.width/2;
-    }
-    set bottom(value: number) {
-        this.position.y = value - this.width/2;
     }
 }
