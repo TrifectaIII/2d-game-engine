@@ -97,10 +97,10 @@ const sketch = (p: p5) => {
         
         p.rectMode(p.CORNERS);
         p.rect(
-            player.left,
-            player.top,
-            player.right,
-            player.bottom,
+            Math.round(player.left)+0.5,
+            Math.round(player.top)+0.5,
+            Math.round(player.right)-0.5,
+            Math.round(player.bottom)-0.5,
         );
     }
 
