@@ -19,3 +19,4 @@ export const randint = (a: number, b: number): number => {
         return Math.floor(b + (a - b + 1) * Math.random());
     }
 }
+

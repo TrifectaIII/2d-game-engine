@@ -14,8 +14,8 @@ class Star {
     constructor() {
         this.proximity = Utility.rand(0.001, 1);
         this.position = new Core.Vector(
-            Utility.rand(0, Core.GAME_WIDTH),
-            Core.GAME_HEIGHT * -0.1,
+            Utility.rand(0, Core.GAME_LENGTH),
+            Core.GAME_LENGTH * -0.1,
         );
     }
 
@@ -23,19 +23,19 @@ class Star {
         this.position.y += this.proximity * SPEED_SCALE;
     }
 
-    draw (p: p5) {
+    draw (p: p5, scaleFactor: number) {
         p.push();
         p.fill('black');
         p.circle(
-            this.position.x, 
-            this.position.y, 
-            this.proximity * SIZE_SCALE,
+            this.position.x / scaleFactor, 
+            this.position.y / scaleFactor, 
+            this.proximity * SIZE_SCALE / scaleFactor,
         );
         p.pop();
     }
 
     finished(): boolean {
-        return this.position.y > Core.GAME_HEIGHT * 1.1;
+        return this.position.y > Core.GAME_LENGTH * 1.1;
     }
 
 }
@@ -62,9 +62,9 @@ export class Background {
 
     }
 
-    draw(p: p5) {
+    draw(p: p5, scaleFactor: number) {
 
-        this.stars.forEach((star: Star) => star.draw(p));
+        this.stars.forEach((star: Star) => star.draw(p, scaleFactor));
 
     }
 }

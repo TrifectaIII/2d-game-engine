@@ -7,7 +7,7 @@ export class Enemy extends Core.GameObject {
     health: number;
 
     constructor() {
-        super(Core.GAME_WIDTH/2, 0, 100, 100);
+        super(Core.GAME_LENGTH/2, 0, 100, 100);
         this.health = 100;
     }
 

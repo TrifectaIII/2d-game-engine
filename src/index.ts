@@ -30,6 +30,9 @@ const scaleGame = (p: p5, cnv: p5.Renderer) => {
     // adjust font size
     p.textSize(side/30);
 
+    // return scale factor
+    return Core.GAME_LENGTH/side;
+
 }
 
 const sketch = (p: p5) => {
@@ -37,6 +40,7 @@ const sketch = (p: p5) => {
     // store refs
     let cnv: p5.Renderer;
     let font: p5.Font;
+    let scaleFactor: number;
     let background: Background;
     let other: Core.GameObject;
     let player: Core.GameObject;
@@ -55,7 +59,7 @@ const sketch = (p: p5) => {
         p.textFont(font);
 
         // scale game elements to window size
-        scaleGame(p, cnv);
+        scaleFactor = scaleGame(p, cnv);
 
         // Create background
         background = new Background();
@@ -68,7 +72,7 @@ const sketch = (p: p5) => {
 
     p.windowResized = () => {
         // scale game elements to window size
-        scaleGame(p, cnv);
+        scaleFactor = scaleGame(p, cnv);
     }
 
     p.draw = () => {
@@ -79,7 +83,7 @@ const sketch = (p: p5) => {
         p.background(255);
 
         background.update();
-        background.draw(p);
+        background.draw(p, scaleFactor);
 
         p.fill('white');
 
@@ -102,6 +106,7 @@ const sketch = (p: p5) => {
             Math.round(player.right)-0.5,
             Math.round(player.bottom)-0.5,
         );
+
     }
 
 }

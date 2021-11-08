@@ -9,7 +9,7 @@ export class Player extends Core.GameObject {
     health: number;
 
     constructor() {
-        super(Core.GAME_WIDTH/2, Core.GAME_HEIGHT/2, 100, 100);
+        super(Core.GAME_LENGTH/2, Core.GAME_LENGTH/2, 100, 100);
         this.health = 100;
     }
 

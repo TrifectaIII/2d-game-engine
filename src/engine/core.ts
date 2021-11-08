@@ -1,8 +1,9 @@
+import * as p5 from 'p5';
+
 // Game Engine Essentials
 
 // Game Constants
-export const GAME_WIDTH = 1000;
-export const GAME_HEIGHT = 1000;
+export const GAME_LENGTH = 1000;
 
 // 2D Vector Class
 export class Vector {
