@@ -20,9 +20,9 @@ export const randint = (a: number, b: number): number => {
     }
 }
 
-// Round to nearest midpoint between integers
-// 0 becomes 0.5
 export const roundMid = (n: number): number => {
+    // Round to nearest midpoint between integers
+    // 0 becomes 0.5
     const negative: number = n < 0 ? -1 : 1;
     return (Math.round(n * negative - 0.5) + 0.5) * negative;
 }
