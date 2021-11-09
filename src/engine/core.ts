@@ -3,6 +3,7 @@ import * as p5 from 'p5';
 // Game Engine Essentials
 
 // Game Constants
+// Length of game space in both horizontal and vertical directions
 export const GAME_LENGTH = 1000;
 
 // 2D Vector Class

@@ -113,3 +113,14 @@ const sketch = (p: p5) => {
 
 // create game instance of p5
 const game = new p5(sketch);
+
+
+console.log(15, Utility.roundMid(15));
+console.log(-15, Utility.roundMid(-15));
+console.log(15.5, Utility.roundMid(15.5));
+console.log(-15.5, Utility.roundMid(-15.5));
+console.log(0, Utility.roundMid(0));
+console.log(15.75, Utility.roundMid(15.75));
+console.log(-15.75, Utility.roundMid(-15.75));
+console.log(15.25, Utility.roundMid(15.25));
+console.log(-15.25, Utility.roundMid(-15.25));
