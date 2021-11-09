@@ -10,7 +10,7 @@ export const rand = (a: number, b: number): number => {
     }
 }
 
-export const randint = (a: number, b: number): number => {
+export const randInt = (a: number, b: number): number => {
     // Returns a random int i such that a <= i <= b
     if (a < b) {
         return Math.floor(a + (b - a + 1) * Math.random());

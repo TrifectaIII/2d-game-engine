@@ -89,10 +89,10 @@ const sketch = (p: p5) => {
 
         p.rectMode(p.CORNERS);
         p.rect(
-            other.left,
-            other.top,
-            other.right,
-            other.bottom,
+            Utility.roundMid(other.left),
+            Utility.roundMid(other.top),
+            Utility.roundMid(other.right),
+            Utility.roundMid(other.bottom),
         );
         
         if (other.collides(player)) {
@@ -101,10 +101,10 @@ const sketch = (p: p5) => {
         
         p.rectMode(p.CORNERS);
         p.rect(
-            Math.round(player.left)+0.5,
-            Math.round(player.top)+0.5,
-            Math.round(player.right)-0.5,
-            Math.round(player.bottom)-0.5,
+            Utility.roundMid(player.left),
+            Utility.roundMid(player.top),
+            Utility.roundMid(player.right),
+            Utility.roundMid(player.bottom),
         );
 
     }
@@ -113,14 +113,3 @@ const sketch = (p: p5) => {
 
 // create game instance of p5
 const game = new p5(sketch);
-
-
-console.log(15, Utility.roundMid(15));
-console.log(-15, Utility.roundMid(-15));
-console.log(15.5, Utility.roundMid(15.5));
-console.log(-15.5, Utility.roundMid(-15.5));
-console.log(0, Utility.roundMid(0));
-console.log(15.75, Utility.roundMid(15.75));
-console.log(-15.75, Utility.roundMid(-15.75));
-console.log(15.25, Utility.roundMid(15.25));
-console.log(-15.25, Utility.roundMid(-15.25));
