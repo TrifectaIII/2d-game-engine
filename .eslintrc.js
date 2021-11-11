@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable */
 module.exports = {
     env: {
         browser: true,
@@ -47,7 +47,10 @@ module.exports = {
         'computed-property-spacing': 'error',
         'consistent-return': 'error',
         'consistent-this': 'error',
-        'curly': 'error',
+        'curly': [
+            'error',
+            'multi',
+        ],
         'default-case': 'error',
         'default-case-last': 'error',
         'default-param-last': 'error',
@@ -65,11 +68,11 @@ module.exports = {
         'grouped-accessor-pairs': 'error',
         'guard-for-in': 'error',
         'id-denylist': 'error',
-        'id-length': 'error',
+        // 'id-length': 'error',
         'id-match': 'error',
         'implicit-arrow-linebreak': 'error',
         'indent': 'error',
-        'init-declarations': 'error',
+        // 'init-declarations': 'error',
         'jsx-quotes': ['error', 'prefer-single'],
         'key-spacing': 'error',
         'keyword-spacing': 'error',
@@ -77,7 +80,7 @@ module.exports = {
         // 'linebreak-style': 'error',
         'lines-around-comment': 'error',
         'lines-between-class-members': 'error',
-        'max-classes-per-file': 'error',
+        // 'max-classes-per-file': 'error',
         'max-depth': 'error',
         'max-len': [
             'error',
@@ -87,7 +90,7 @@ module.exports = {
         // 'max-lines-per-function': 'error',
         'max-nested-callbacks': 'error',
         'max-params': 'error',
-        'max-statements': 'error',
+        // 'max-statements': 'error',
         'max-statements-per-line': 'error',
         // 'multiline-comment-style': 'error',
         // 'multiline-ternary': 'error',
@@ -130,7 +133,7 @@ module.exports = {
             'error',
             {ignore: [0, 1, 2]},
         ],
-        'no-mixed-operators': 'error',
+        // 'no-mixed-operators': 'error',
         'no-multi-assign': 'error',
         'no-multi-spaces': 'error',
         'no-multi-str': 'error',
