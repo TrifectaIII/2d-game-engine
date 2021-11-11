@@ -3,7 +3,9 @@ import * as P5 from 'p5';
 import * as Core from '../engine/core';
 import * as Utility from '../engine/utility';
 
-export const MAX_HEALTH = 100;
+const MAX_HEALTH = 100;
+const WIDTH = 100;
+const HEIGHT = 100;
 
 export class Player extends Core.GameObject {
 
@@ -11,13 +13,25 @@ export class Player extends Core.GameObject {
 
     constructor () {
 
-        super(Core.GAME_LENGTH / 2, Core.GAME_LENGTH / 2, 100, 100);
-        this.health = 100;
+        super(Core.GAME_LENGTH / 2, Core.GAME_LENGTH / 2, HEIGHT, WIDTH);
+        this.health = MAX_HEALTH;
 
     }
 
-    draw (p: P5) {
-        // Something
+    draw (p: P5, scaleFactor: number) {
+
+        p.push();
+
+        p.rectMode(p.CORNERS);
+        p.rect(
+            Utility.roundMid(this.left * scaleFactor),
+            Utility.roundMid(this.top * scaleFactor),
+            Utility.roundMid(this.right * scaleFactor),
+            Utility.roundMid(this.bottom * scaleFactor),
+        );
+
+        p.pop();
+
     }
 
 }

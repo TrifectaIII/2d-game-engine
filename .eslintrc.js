@@ -27,7 +27,11 @@ module.exports = {
         'arrow-spacing': 'error',
         'block-scoped-var': 'error',
         'block-spacing': 'error',
-        'brace-style': 'error',
+        'brace-style': [
+            'error',
+            '1tbs',
+            {allowSingleLine: true},
+        ],
         'camelcase': 'error',
         // 'capitalized-comments': 'error',
         'class-methods-use-this': 'error',
@@ -89,7 +93,7 @@ module.exports = {
         'max-lines': 'error',
         // 'max-lines-per-function': 'error',
         'max-nested-callbacks': 'error',
-        'max-params': 'error',
+        // 'max-params': 'error',
         // 'max-statements': 'error',
         'max-statements-per-line': 'error',
         // 'multiline-comment-style': 'error',
@@ -130,7 +134,7 @@ module.exports = {
         'no-loop-func': 'error',
         'no-loss-of-precision': 'error',
         'no-magic-numbers': [
-            'error',
+            'warn',
             {ignore: [0, 1, 2]},
         ],
         // 'no-mixed-operators': 'error',
@@ -195,7 +199,11 @@ module.exports = {
         'one-var-declaration-per-line': 'error',
         'operator-assignment': 'error',
         'operator-linebreak': 'error',
-        'padded-blocks': 'error',
+        'padded-blocks': [
+            'error',
+            'always',
+            {allowSingleLineBlocks: true}
+        ],
         'padding-line-between-statements': 'error',
         'prefer-arrow-callback': 'error',
         'prefer-const': 'error',

@@ -21,7 +21,9 @@ export const roundMid = (n: number): number => {
 
     // Round to nearest midpoint between integers
     // 0 becomes 0.5
+    // eslint-disable-next-line no-magic-numbers
     const negative: number = n < 0 ? -1 : 1;
+    // eslint-disable-next-line no-magic-numbers
     return (Math.round(n * negative - 0.5) + 0.5) * negative;
 
 };

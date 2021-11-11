@@ -1,17 +1,37 @@
-import * as p5 from 'p5';
+import * as P5 from 'p5';
 
 import * as Core from '../engine/core';
 import * as Utility from '../engine/utility';
 
+const MAX_HEALTH = 100;
+const WIDTH = 100;
+const HEIGHT = 100;
+
 export class Enemy extends Core.GameObject {
+
     health: number;
 
-    constructor() {
-        super(Core.GAME_LENGTH/2, 0, 100, 100);
-        this.health = 100;
+    constructor () {
+
+        super(Core.GAME_LENGTH / 2, 0, HEIGHT, WIDTH);
+        this.health = MAX_HEALTH;
+
     }
 
-    draw (p: p5) {
-        
+    draw (p: P5, scaleFactor: number) {
+
+        p.push();
+
+        p.rectMode(p.CORNERS);
+        p.rect(
+            Utility.roundMid(this.left * scaleFactor),
+            Utility.roundMid(this.top * scaleFactor),
+            Utility.roundMid(this.right * scaleFactor),
+            Utility.roundMid(this.bottom * scaleFactor),
+        );
+
+        p.pop();
+
     }
+
 }
