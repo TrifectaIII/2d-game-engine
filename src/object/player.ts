@@ -7,7 +7,7 @@ const MAX_HEALTH = 100;
 const WIDTH = 100;
 const HEIGHT = 100;
 
-export class Player extends Core.GameObject {
+export default class Player extends Core.GameObject {
 
     health: number;
 
@@ -23,11 +23,15 @@ export class Player extends Core.GameObject {
         p.push();
 
         p.rectMode(p.CORNERS);
+        p.fill('white');
+        p.stroke('black');
+        p.strokeWeight(1);
+
         p.rect(
-            Utility.roundMid(this.left * scaleFactor),
-            Utility.roundMid(this.top * scaleFactor),
-            Utility.roundMid(this.right * scaleFactor),
-            Utility.roundMid(this.bottom * scaleFactor),
+            Utility.roundMid(this.left / scaleFactor),
+            Utility.roundMid(this.top / scaleFactor),
+            Utility.roundMid(this.right / scaleFactor),
+            Utility.roundMid(this.bottom / scaleFactor),
         );
 
         p.pop();

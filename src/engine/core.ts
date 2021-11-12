@@ -66,7 +66,7 @@ export class Vector {
 
 }
 
-// 2D GameObject Class woth position and AABB
+// 2D GameObject Class with position and AABB
 export class GameObject {
 
     position: Vector;

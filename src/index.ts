@@ -6,6 +6,11 @@ import './style.css';
 
 import * as Core from './engine/core';
 import * as Utility from './engine/utility';
+
+import Player from './object/player';
+import Enemy from './object/enemy';
+import Projectile from './object/projectile';
+
 import {Background} from './particle/background';
 
 const adjustCanvas = (p: P5, cnv: P5.Renderer, side: number) => {
@@ -44,8 +49,8 @@ const sketch = (p: P5) => {
     let font: P5.Font;
     let scaleFactor: number;
     let background: Background;
-    let other: Core.GameObject;
-    let player: Core.GameObject;
+    let enemy: Enemy;
+    let player: Player;
 
     p.preload = () => {
 
@@ -69,8 +74,8 @@ const sketch = (p: P5) => {
         background = new Background();
 
         // Create gameobjects for testing
-        other = new Core.GameObject(p.width / 2, p.height / 2, 100, 100);
-        player = new Core.GameObject(p.width / 2, p.height / 2, 50, 50);
+        player = new Player();
+        enemy = new Enemy();
 
     };
 
@@ -83,33 +88,16 @@ const sketch = (p: P5) => {
 
     p.draw = () => {
 
-        player.position.x = p.mouseX;
-        player.position.y = p.mouseY;
+        player.position.x = p.mouseX * scaleFactor;
+        player.position.y = p.mouseY * scaleFactor;
 
         p.background(255);
 
         background.update();
         background.draw(p, scaleFactor);
 
-        p.fill('white');
-
-        p.rectMode(p.CORNERS);
-        p.rect(
-            Utility.roundMid(other.left),
-            Utility.roundMid(other.top),
-            Utility.roundMid(other.right),
-            Utility.roundMid(other.bottom),
-        );
-
-        if (other.collides(player)) p.fill('red');
-
-        p.rectMode(p.CORNERS);
-        p.rect(
-            Utility.roundMid(player.left),
-            Utility.roundMid(player.top),
-            Utility.roundMid(player.right),
-            Utility.roundMid(player.bottom),
-        );
+        player.draw(p, scaleFactor);
+        enemy.draw(p, scaleFactor);
 
     };
 
