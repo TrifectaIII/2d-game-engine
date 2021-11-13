@@ -1,3 +1,5 @@
+import * as P5 from 'p5';
+
 // Game Engine Essentials
 
 // Game Constants
@@ -66,8 +68,8 @@ export class Vector {
 
 }
 
-// 2D GameObject Class with position and AABB
-export class GameObject {
+// 2D abstract class with position, AABB, collision and draw
+export abstract class GameObject {
 
     position: Vector;
 
@@ -109,5 +111,7 @@ export class GameObject {
         );
 
     }
+
+    abstract draw (p: P5, scaleFactor: number): void;
 
 }

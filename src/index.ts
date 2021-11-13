@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import * as P5 from 'p5';
 import 'normalize.css';
 
@@ -88,10 +87,11 @@ const sketch = (p: P5) => {
 
     p.draw = () => {
 
+        // Move player to mouse position
         player.position.x = p.mouseX * scaleFactor;
         player.position.y = p.mouseY * scaleFactor;
 
-        p.background(255);
+        p.background('white');
 
         background.update();
         background.draw(p, scaleFactor);
