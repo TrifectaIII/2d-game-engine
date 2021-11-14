@@ -112,6 +112,7 @@ export abstract class GameObject {
 
     }
 
+    // Abstract method must be implemented by implementing classes
     abstract draw (p: P5, scaleFactor: number): void;
 
 }
