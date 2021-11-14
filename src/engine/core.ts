@@ -7,6 +7,9 @@ import * as P5 from 'p5';
 // Length of game space in both horizontal and vertical directions
 export const GAME_LENGTH = 1000;
 
+// Scale for default text size
+export const TEXT_SIZE = 5;
+
 // 2D Vector Class
 export class Vector {
 
@@ -53,7 +56,6 @@ export class Vector {
     reverse (): Vector {
 
         // returns a reversed version of this vector
-        // eslint-disable-next-line no-magic-numbers
         return this.scale(-1);
 
     }

@@ -4,11 +4,9 @@ import 'normalize.css';
 import './style.css';
 
 import * as Core from './engine/core';
-import * as Utility from './engine/utility';
 
 import Player from './object/player';
 import Enemy from './object/enemy';
-import Projectile from './object/projectile';
 
 import {Background} from './particle/background';
 
@@ -34,7 +32,7 @@ const scaleGame = (p: P5, cnv: P5.Renderer) => {
     adjustCanvas(p, cnv, side);
 
     // adjust font size
-    p.textSize(side / 30);
+    p.textSize(side * Core.TEXT_SIZE / 100);
 
     // return scale factor
     return Core.GAME_LENGTH / side;

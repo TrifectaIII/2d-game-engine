@@ -1,6 +1,6 @@
 // Utility Functions
 
-export const rand = (a: number, b: number): number => {
+export const rand = (a = 0, b = 1): number => {
 
     // Returns a random float f such that a <= f < b
     if (a < b) return a + (b - a) * Math.random();

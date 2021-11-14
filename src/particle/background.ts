@@ -18,10 +18,10 @@ class Star {
 
     constructor () {
 
-        this.proximity = Utility.rand(0.001, 1);
+        this.proximity = Utility.rand();
         this.position = new Core.Vector(
             Utility.rand(0, Core.GAME_LENGTH),
-            Core.GAME_LENGTH * -0.1,
+            -this.proximity * SIZE_SCALE,
         );
 
     }
@@ -47,7 +47,7 @@ class Star {
 
     finished (): boolean {
 
-        return this.position.y > Core.GAME_LENGTH * 1.1;
+        return this.position.y > Core.GAME_LENGTH + this.proximity * SIZE_SCALE;
 
     }
 

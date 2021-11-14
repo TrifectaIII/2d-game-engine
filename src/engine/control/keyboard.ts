@@ -23,7 +23,7 @@ export default class KeyboardControl {
             },
             primaryFire: true,
             alternateFire: false,
-        };
+        } as InputState;
 
     }
 

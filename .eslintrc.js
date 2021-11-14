@@ -135,7 +135,7 @@ module.exports = {
         'no-loss-of-precision': 'error',
         'no-magic-numbers': [
             'warn',
-            {ignore: [0, 1, 2]},
+            {ignore: [-1, 0, 1, 2, 100]},
         ],
         // 'no-mixed-operators': 'error',
         'no-multi-assign': 'error',

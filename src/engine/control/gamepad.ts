@@ -26,7 +26,7 @@ export default class GamepadControl {
             },
             primaryFire: true,
             alternateFire: false,
-        };
+        } as InputState;
 
     }
 
