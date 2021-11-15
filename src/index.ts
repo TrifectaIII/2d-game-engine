@@ -9,6 +9,7 @@ import Player from './object/player';
 import Enemy from './object/enemy';
 
 import {Background} from './particle/background';
+import Control from './engine/control';
 
 const adjustCanvas = (p: P5, cnv: P5.Renderer, side: number) => {
 
@@ -103,3 +104,5 @@ const sketch = (p: P5) => {
 
 // create game instance of p5
 const game = new P5(sketch);
+
+const control = new Control();

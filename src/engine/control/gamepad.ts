@@ -8,10 +8,35 @@ export default class GamepadControl {
 
     lastInput: number;
 
+    gamepad: Gamepad | null;
+
     constructor () {
 
         this.connected = false;
         this.lastInput = 0;
+        this.gamepad = null;
+
+        window.addEventListener(
+            'gamepadconnected',
+            (event: GamepadEvent) => {
+
+                this.gamepad = event.gamepad;
+                this.connected = true;
+                console.log(this);
+
+            },
+        );
+
+        window.addEventListener(
+            'gamepaddisconnected',
+            (event: GamepadEvent) => {
+
+                this.gamepad = event.gamepad;
+                this.connected = false;
+                console.log(this);
+
+            },
+        );
 
     }
 
