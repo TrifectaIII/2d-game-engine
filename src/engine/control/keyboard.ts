@@ -1,4 +1,4 @@
-import {InputState} from '.';
+import {InputState, defaultInputState} from '.';
 
 // Control System for Keypad
 
@@ -6,24 +6,18 @@ export default class KeyboardControl {
 
     lastInput: number;
 
+    inputState: InputState;
+
     constructor () {
 
         this.lastInput = 0;
+        this.inputState = defaultInputState();
 
     }
 
-    getInput (): InputState {
+    getInputs (): InputState {
 
-        return {
-            move: {
-                right: 1,
-                left: 0,
-                up: 1,
-                down: 0,
-            },
-            primaryFire: true,
-            alternateFire: false,
-        } as InputState;
+        return this.inputState;
 
     }
 

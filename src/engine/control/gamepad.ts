@@ -1,57 +1,44 @@
-import {InputState} from '.';
+import {InputState, defaultInputState} from '.';
 
 // Control System for Gamepads using HTML5 Gamepad API
 
 export default class GamepadControl {
 
-    connected: boolean;
-
     lastInput: number;
 
-    gamepad: Gamepad | null;
+    inputState: InputState;
+
+    gamepadCount: number;
 
     constructor () {
 
-        this.connected = false;
         this.lastInput = 0;
-        this.gamepad = null;
+        this.inputState = defaultInputState();
+        this.gamepadCount = 0;
 
         window.addEventListener(
             'gamepadconnected',
-            (event: GamepadEvent) => {
-
-                this.gamepad = event.gamepad;
-                this.connected = true;
-                console.log(this);
-
-            },
+            (event: GamepadEvent) => { this.gamepadCount += 1; },
         );
 
         window.addEventListener(
             'gamepaddisconnected',
-            (event: GamepadEvent) => {
-
-                this.gamepad = event.gamepad;
-                this.connected = false;
-                console.log(this);
-
-            },
+            (event: GamepadEvent) => { this.gamepadCount -= 1; },
         );
 
     }
 
-    getInput (): InputState {
+    get connected (): boolean { return this.gamepadCount > 0; }
 
-        return {
-            move: {
-                right: 1,
-                left: 0,
-                up: 1,
-                down: 0,
-            },
-            primaryFire: true,
-            alternateFire: false,
-        } as InputState;
+    getInputs (): InputState {
+
+        // Retrieve first gamepad in array
+        const [gamepad] = navigator.getGamepads().filter((pad) => pad !== null);
+
+        // Return defaults if no active gamepads
+        if (!gamepad) return defaultInputState();
+
+        return this.inputState;
 
     }
 

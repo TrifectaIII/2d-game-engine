@@ -15,6 +15,17 @@ export interface InputState {
     alternateFire: boolean;
 }
 
+export const defaultInputState = (): InputState => ({
+    move: {
+        right: 0,
+        left: 0,
+        up: 0,
+        down: 0,
+    },
+    primaryFire: false,
+    alternateFire: false,
+});
+
 export default class Control {
 
     keyboardControl: KeyboardControl;
@@ -28,13 +39,13 @@ export default class Control {
 
     }
 
-    getState (): InputState {
+    getInputs (): InputState {
 
         if (
             this.gamepadControl.connected &&
             this.gamepadControl.lastInput > this.keyboardControl.lastInput
-        ) return this.gamepadControl.getInput();
-        return this.keyboardControl.getInput();
+        ) return this.gamepadControl.getInputs();
+        return this.keyboardControl.getInputs();
 
     }
 
