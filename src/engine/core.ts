@@ -114,7 +114,7 @@ export abstract class GameObject {
 
     }
 
-    // Abstract method must be implemented by implementing classes
+    // Abstract method must be implemented by inheriting classes
     abstract draw (p: P5, scaleFactor: number): void;
 
 }
