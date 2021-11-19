@@ -34,6 +34,8 @@ export default class GamepadControl {
 
     update (): boolean {
 
+        const previousStamp = this.gamepad?.timestamp || 0;
+
         // Retrieve first gamepad in array
         [this.gamepad] = navigator.getGamepads().filter((pad) => pad !== null);
 
@@ -42,7 +44,7 @@ export default class GamepadControl {
 
         // Figure out if inputs have changed and update lastInput and inputState
         // eslint-disable-next-line no-constant-condition
-        if (true) {
+        if (previousStamp < this.gamepad.timestamp) {
 
             this.lastInput = Date.now();
             this.inputState = GamepadControl.convert(this.gamepad);
