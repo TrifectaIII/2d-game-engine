@@ -2,6 +2,8 @@ import {InputState, defaultInputState} from '.';
 
 // Control System for Gamepads using HTML5 Gamepad API
 
+const CLAMP_RANGE = 0.01;
+
 export default class GamepadControl {
 
     lastInput: number;
@@ -20,11 +22,21 @@ export default class GamepadControl {
 
     static convert (gamepad: Gamepad): InputState {
 
+        const horizontalClamp =
+            Math.abs(gamepad.axes[0]) > CLAMP_RANGE
+                ? gamepad.axes[0]
+                : 0;
+
+        const verticalClamp =
+            Math.abs(gamepad.axes[1]) > CLAMP_RANGE
+                ? gamepad.axes[1]
+                : 0;
+
         // Convert a Gamepad object to an InputState object
         return {
             move: {
-                horizontal: gamepad.axes[0],
-                vertical: gamepad.axes[1],
+                horizontal: horizontalClamp,
+                vertical: verticalClamp,
             },
             primaryFire: gamepad.buttons[0].pressed,
             alternateFire: gamepad.buttons[1].pressed,
@@ -43,7 +55,6 @@ export default class GamepadControl {
         if (!this.gamepad) return false;
 
         // Figure out if inputs have changed and update lastInput and inputState
-        // eslint-disable-next-line no-constant-condition
         if (previousStamp < this.gamepad.timestamp) {
 
             this.lastInput = Date.now();
