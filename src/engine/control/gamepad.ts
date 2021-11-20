@@ -20,7 +20,9 @@ export default class GamepadControl {
 
     }
 
-    static convert (gamepad: Gamepad): InputState {
+    static convert (gamepad: Gamepad | null): InputState {
+
+        if (!gamepad) return defaultInputState();
 
         const horizontalClamp =
             Math.abs(gamepad.axes[0]) > CLAMP_RANGE
@@ -54,13 +56,8 @@ export default class GamepadControl {
         // Return false if no active gamepads
         if (!this.gamepad) return false;
 
-        // Figure out if inputs have changed and update lastInput and inputState
-        if (previousStamp < this.gamepad.timestamp) {
-
-            this.lastInput = Date.now();
-            this.inputState = GamepadControl.convert(this.gamepad);
-
-        }
+        // Figure out if inputs have changed and update lastInput
+        if (previousStamp < this.gamepad.timestamp) this.lastInput = Date.now();
 
         return true;
 
@@ -68,7 +65,7 @@ export default class GamepadControl {
 
     getInputs (): InputState {
 
-        return this.inputState;
+        return GamepadControl.convert(this.gamepad);
 
     }
 
