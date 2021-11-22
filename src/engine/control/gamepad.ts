@@ -2,47 +2,19 @@ import {InputState, defaultInputState} from '.';
 
 // Control System for Gamepads using HTML5 Gamepad API
 
+// any axis values below this magnitude will be ignored
 const CLAMP_RANGE = 0.01;
 
 export default class GamepadControl {
 
     lastInput: number;
 
-    inputState: InputState;
-
     gamepad: Gamepad | null;
 
     constructor () {
 
         this.lastInput = 0;
-        this.inputState = defaultInputState();
         this.gamepad = null;
-
-    }
-
-    static convert (gamepad: Gamepad | null): InputState {
-
-        if (!gamepad) return defaultInputState();
-
-        const horizontalClamp =
-            Math.abs(gamepad.axes[0]) > CLAMP_RANGE
-                ? gamepad.axes[0]
-                : 0;
-
-        const verticalClamp =
-            Math.abs(gamepad.axes[1]) > CLAMP_RANGE
-                ? gamepad.axes[1]
-                : 0;
-
-        // Convert a Gamepad object to an InputState object
-        return {
-            move: {
-                horizontal: horizontalClamp,
-                vertical: verticalClamp,
-            },
-            primaryFire: gamepad.buttons[0].pressed,
-            alternateFire: gamepad.buttons[1].pressed,
-        };
 
     }
 
@@ -65,7 +37,27 @@ export default class GamepadControl {
 
     getInputs (): InputState {
 
-        return GamepadControl.convert(this.gamepad);
+        // Return default values if no gamepad is connected
+        if (!this.gamepad) return defaultInputState();
+
+        // clamp axis values to ignore joystick drift
+        const horizontalClamp =
+            Math.abs(this.gamepad.axes[0]) > CLAMP_RANGE
+                ? this.gamepad.axes[0]
+                : 0;
+        const verticalClamp =
+            Math.abs(this.gamepad.axes[1]) > CLAMP_RANGE
+                ? this.gamepad.axes[1]
+                : 0;
+
+        return {
+            move: {
+                horizontal: horizontalClamp,
+                vertical: verticalClamp,
+            },
+            primaryFire: this.gamepad.buttons[0].pressed,
+            alternateFire: this.gamepad.buttons[1].pressed,
+        };
 
     }
 
