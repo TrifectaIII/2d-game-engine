@@ -1,4 +1,4 @@
-import {InputState, defaultInputState} from '.';
+import {InputState} from '.';
 
 // Control System for Keypad
 
