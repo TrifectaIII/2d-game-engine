@@ -24,25 +24,26 @@ export class Vector {
 
     }
 
-    magnitude (): number {
+    get magnitude (): number {
 
         // return the magnitude of the vector
-        return Math.sqrt(this.x * this.x + this.y * this.y);
+        return Math.sqrt(this.x ** 2 + this.y ** 2);
+
+    }
+
+    get direction (): number {
+
+        // returns the direction of the vector in radians
+        return Math.atan2(this.y, this.x);
 
     }
 
     normalize (): Vector {
 
         // returns a normalized version of this vector
-        const mag = this.magnitude();
+        const mag = this.magnitude;
+        if (!mag) return new Vector(0, 0);
         return new Vector(this.x / mag, this.y / mag);
-
-    }
-
-    direction (): number {
-
-        // returns the direction of the vector in radians
-        return Math.atan2(this.y, this.x);
 
     }
 

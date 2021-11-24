@@ -1,3 +1,4 @@
+import * as Core from '../core';
 import {InputState, defaultInputState} from '.';
 
 // Control System for Gamepads using HTML5 Gamepad API
@@ -51,10 +52,10 @@ export default class GamepadControl {
                 : 0;
 
         return {
-            move: {
-                horizontal: horizontalClamp,
-                vertical: verticalClamp,
-            },
+            move: new Core.Vector(
+                horizontalClamp,
+                verticalClamp,
+            ),
             primaryFire: this.gamepad.buttons[0].pressed,
             alternateFire: this.gamepad.buttons[1].pressed,
         };

@@ -106,3 +106,6 @@ const sketch = (p: P5) => {
 const game = new P5(sketch);
 
 const control = new Control();
+
+const v = new Core.Vector(100, 0);
+console.log(v.normalize());
