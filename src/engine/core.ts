@@ -17,28 +17,58 @@ export class Vector {
 
     y: number;
 
-    constructor (x?: number, y?: number) {
+    constructor (x = 0, y = 0) {
 
-        this.x = x || 0;
-        this.y = y || 0;
+        this.x = x;
+        this.y = y;
 
     }
 
+    // magnitude of the vector
     get magnitude (): number {
 
-        // return the magnitude of the vector
         return Math.sqrt(this.x ** 2 + this.y ** 2);
 
     }
 
+    set magnitude (m: number) {
+
+        if (this.magnitude) {
+
+            const newVector = this.normalized().scaled(m);
+            this.x = newVector.x;
+            this.y = newVector.y;
+
+        }
+
+    }
+
+    // direction the vector is pointing, in radians
+    // NaN if vector has no magnitude
     get direction (): number {
 
-        // returns the direction of the vector in radians
+        if (!this.magnitude) return NaN;
+
         return Math.atan2(this.y, this.x);
 
     }
 
-    normalize (): Vector {
+    set direction (r: number) {
+
+        if (isNaN(r)) {
+
+            this.magnitude = 0;
+            return;
+
+        }
+
+        const m = this.magnitude;
+        this.x = Math.cos(r) * m;
+        this.y = Math.sin(r) * m;
+
+    }
+
+    normalized (): Vector {
 
         // returns a normalized version of this vector
         const mag = this.magnitude;
@@ -47,25 +77,41 @@ export class Vector {
 
     }
 
-    scale (factor: number): Vector {
+    scaled (factor: number): Vector {
 
         // returns a new vector scaled by the factor.
         return new Vector(this.x * factor, this.y * factor);
 
     }
 
-    reverse (): Vector {
+    reversed (): Vector {
 
         // returns a reversed version of this vector
-        return this.scale(-1);
+        return this.scaled(-1);
 
     }
 
-    add (other: Vector): Vector {
+    added (other: Vector): Vector {
 
-        // returns a new vector equal to this vector added to another vector
-        // combine with reverse method to subtract
+        // adds a vector to this one (new object returned)
         return new Vector(this.x + other.x, this.y + other.y);
+
+    }
+
+
+    subtracted (other: Vector): Vector {
+
+        // subtracts a vector from this one (new object returned)
+        return this.added(other.reversed());
+
+    }
+
+    rotated (r: number): Vector {
+
+        // returns this vector if it were rotated r radians
+        const nv = new Vector(this.x, this.y);
+        nv.direction += r;
+        return nv;
 
     }
 

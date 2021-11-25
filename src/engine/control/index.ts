@@ -42,7 +42,7 @@ export default class Control {
             : this.keyboardControl.getInputs();
 
         // normalize movement vector if magnitude is over 1
-        if (result.move.magnitude > 1) result.move = result.move.normalize();
+        if (result.move.magnitude > 1) result.move = result.move.normalized();
 
         return result;
 
