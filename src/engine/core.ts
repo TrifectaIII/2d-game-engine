@@ -117,8 +117,23 @@ export class Vector {
 
 }
 
-// 2D abstract class with position, AABB, collision and draw
-export abstract class GameObject {
+// Interface for all body types to implement
+interface Body {
+
+    position: Vector;
+
+    right: number;
+    left: number;
+    top: number;
+    bottom: number;
+
+    collides (other: BodyRect | BodyCircle): boolean;
+
+}
+
+
+// 2D rectangular body class
+class BodyRect implements Body {
 
     position: Vector;
 
@@ -150,16 +165,72 @@ export abstract class GameObject {
 
     }
 
-    collides (other: GameObject): boolean {
+    collides (other: BodyRect | BodyCircle): boolean {
 
-        return (
-            this.left < other.right &&
-            other.left < this.right &&
-            this.top < other.bottom &&
-            other.top < this.bottom
-        );
+        // TODO
+        return true;
+
+        // return (
+        //     this.left < other.right &&
+        //     other.left < this.right &&
+        //     this.top < other.bottom &&
+        //     other.top < this.bottom
+        // );
 
     }
+
+}
+
+// 2d rectangular GameObject class
+// extended from rectangular body with a draw method to implement
+export abstract class GameObjectRect extends BodyRect {
+
+    // Abstract method must be implemented by inheriting classes
+    abstract draw (p: P5, scaleFactor: number): void;
+
+}
+
+class BodyCircle implements Body {
+
+    position: Vector;
+
+    radius: number;
+
+    get right (): number { return this.position.x + this.radius; }
+
+    set right (value: number) { this.position.x = value - this.radius; }
+
+    get left (): number { return this.position.x - this.radius; }
+
+    set left (value: number) { this.position.x = value + this.radius; }
+
+    get top (): number { return this.position.y - this.radius; }
+
+    set top (value: number) { this.position.y = value + this.radius; }
+
+    get bottom (): number { return this.position.y + this.radius; }
+
+    set bottom (value: number) { this.position.y = value - this.radius; }
+
+    constructor (x: number, y: number, radius: number) {
+
+        this.position = new Vector(x, y);
+        this.radius = radius;
+
+    }
+
+    collides (other: BodyRect | BodyCircle) {
+
+        // TODO
+        return true;
+
+    }
+
+}
+
+// 2d circular GameObject class
+// extended from circular body with a draw method to implement
+export abstract class GameObjectCircle extends BodyCircle {
 
     // Abstract method must be implemented by inheriting classes
     abstract draw (p: P5, scaleFactor: number): void;

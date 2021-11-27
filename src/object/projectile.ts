@@ -6,7 +6,7 @@ import * as Utility from '../engine/utility';
 const WIDTH = 100;
 const HEIGHT = 100;
 
-export default class Projectile extends Core.GameObject {
+export default class Projectile extends Core.GameObjectRect {
 
     constructor (x: number, y: number) {
 

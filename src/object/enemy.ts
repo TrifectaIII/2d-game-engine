@@ -7,7 +7,7 @@ const MAX_HEALTH = 100;
 const WIDTH = 100;
 const HEIGHT = 100;
 
-export default class Enemy extends Core.GameObject {
+export default class Enemy extends Core.GameObjectRect {
 
     health: number;
 
