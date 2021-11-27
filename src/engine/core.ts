@@ -115,6 +115,12 @@ export class Vector {
 
     }
 
+    static distance (a: Vector, b: Vector): number {
+
+        return a.subtracted(b).magnitude;
+
+    }
+
 }
 
 // Interface for all body types to implement
@@ -130,6 +136,21 @@ interface Body {
     collides (other: BodyRect | BodyCircle): boolean;
 
 }
+
+// TODO collision functions
+
+const rectCollision = (a: BodyRect, b: BodyRect): boolean => (
+    a.left < b.right &&
+    b.left < a.right &&
+    a.top < b.bottom &&
+    b.top < a.bottom
+);
+
+const circleCollision = (a: BodyCircle, b: BodyCircle): boolean => (
+    Vector.distance(a.position, b.position) < a.radius + b.radius
+);
+
+const rectCircleCollision = (rect: BodyRect, circle: BodyCircle): boolean => true;
 
 
 // 2D rectangular body class
@@ -167,15 +188,9 @@ class BodyRect implements Body {
 
     collides (other: BodyRect | BodyCircle): boolean {
 
-        // TODO
-        return true;
-
-        // return (
-        //     this.left < other.right &&
-        //     other.left < this.right &&
-        //     this.top < other.bottom &&
-        //     other.top < this.bottom
-        // );
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        if (other instanceof BodyCircle) return rectCircleCollision(this, other);
+        return rectCollision(this, other);
 
     }
 
@@ -221,8 +236,8 @@ class BodyCircle implements Body {
 
     collides (other: BodyRect | BodyCircle) {
 
-        // TODO
-        return true;
+        if (other instanceof BodyRect) return rectCircleCollision(other, this);
+        return circleCollision(other, this);
 
     }
 
