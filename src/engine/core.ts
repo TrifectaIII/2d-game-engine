@@ -123,20 +123,6 @@ export class Vector {
 
 }
 
-// Interface for all body types to implement
-interface Body {
-
-    position: Vector;
-
-    right: number;
-    left: number;
-    top: number;
-    bottom: number;
-
-    collides (other: BodyRect | BodyCircle): boolean;
-
-}
-
 // TODO collision functions
 
 const rectCollision = (a: BodyRect, b: BodyRect): boolean => (
@@ -154,7 +140,7 @@ const rectCircleCollision = (rect: BodyRect, circle: BodyCircle): boolean => tru
 
 
 // 2D rectangular body class
-class BodyRect implements Body {
+class BodyRect {
 
     position: Vector;
 
@@ -205,7 +191,7 @@ export abstract class GameObjectRect extends BodyRect {
 
 }
 
-class BodyCircle implements Body {
+class BodyCircle {
 
     position: Vector;
 
