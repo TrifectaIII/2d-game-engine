@@ -26,9 +26,11 @@ export default class Player extends Core.GameObjectRect {
         p.stroke('black');
         p.strokeWeight(1);
 
-        p.rect(
-            this.left / scaleFactor,
+        p.triangle(
+            this.position.x / scaleFactor,
             this.top / scaleFactor,
+            this.left / scaleFactor,
+            this.bottom / scaleFactor,
             this.right / scaleFactor,
             this.bottom / scaleFactor,
         );
