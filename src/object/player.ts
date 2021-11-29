@@ -1,7 +1,6 @@
 import * as P5 from 'p5';
 
 import * as Core from '../engine/core';
-import * as Utility from '../engine/utility';
 
 const MAX_HEALTH = 100;
 const WIDTH = 100;
@@ -28,10 +27,10 @@ export default class Player extends Core.GameObjectRect {
         p.strokeWeight(1);
 
         p.rect(
-            Utility.roundMid(this.left / scaleFactor),
-            Utility.roundMid(this.top / scaleFactor),
-            Utility.roundMid(this.right / scaleFactor),
-            Utility.roundMid(this.bottom / scaleFactor),
+            this.left / scaleFactor,
+            this.top / scaleFactor,
+            this.right / scaleFactor,
+            this.bottom / scaleFactor,
         );
 
         p.pop();

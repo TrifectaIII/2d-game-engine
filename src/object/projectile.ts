@@ -1,16 +1,19 @@
 import * as P5 from 'p5';
 
 import * as Core from '../engine/core';
-import * as Utility from '../engine/utility';
+import Player from './player';
+import Enemy from './enemy';
 
-const WIDTH = 100;
-const HEIGHT = 100;
+const RADIUS = 10;
 
-export default class Projectile extends Core.GameObjectRect {
+export default class Projectile extends Core.GameObjectCircle {
 
-    constructor (x: number, y: number) {
+    origin: Player | Enemy;
 
-        super(x, y, WIDTH, HEIGHT);
+    constructor (x: number, y: number, origin: Player | Enemy) {
+
+        super(x, y, RADIUS);
+        this.origin = origin;
 
     }
 
@@ -23,11 +26,10 @@ export default class Projectile extends Core.GameObjectRect {
         p.stroke('black');
         p.strokeWeight(1);
 
-        p.rect(
-            Utility.roundMid(this.left / scaleFactor),
-            Utility.roundMid(this.top / scaleFactor),
-            Utility.roundMid(this.right / scaleFactor),
-            Utility.roundMid(this.bottom / scaleFactor),
+        p.circle(
+            this.position.x / scaleFactor,
+            this.position.y / scaleFactor,
+            (RADIUS * 2) / scaleFactor,
         );
 
         p.pop();
