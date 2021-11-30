@@ -121,6 +121,12 @@ export class Vector {
 
     }
 
+    static equal (a: Vector, b: Vector): boolean {
+
+        return a.x === b.x && a.y === b.y;
+
+    }
+
 }
 
 const rectCollision = (a: BodyRect, b: BodyRect): boolean => (
