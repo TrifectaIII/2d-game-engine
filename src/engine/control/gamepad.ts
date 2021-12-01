@@ -1,4 +1,4 @@
-import * as Core from '../core';
+import Vector from '../vector';
 import {InputState, defaultInputState} from '.';
 
 // Control System for Gamepads using HTML5 Gamepad API
@@ -52,7 +52,7 @@ export default class GamepadControl {
                 : 0;
 
         return {
-            move: new Core.Vector(
+            move: new Vector(
                 horizontalClamp,
                 verticalClamp,
             ),

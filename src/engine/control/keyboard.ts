@@ -1,4 +1,4 @@
-import * as Core from '../core';
+import Vector from '../vector';
 import {InputState} from '.';
 
 // Control System for Keypad
@@ -123,7 +123,7 @@ export default class KeyboardControl {
     getInputs (): InputState {
 
         return {
-            move: new Core.Vector(
+            move: new Vector(
                 Number(this.keyStates.right) - Number(this.keyStates.left),
                 Number(this.keyStates.down) - Number(this.keyStates.up),
             ),

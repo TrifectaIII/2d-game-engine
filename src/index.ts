@@ -3,13 +3,12 @@ import 'normalize.css';
 
 import './style.css';
 
-import * as Core from './engine/core';
+import * as Engine from './engine';
 
 import Player from './object/player';
 import Enemy from './object/enemy';
 
-import {Background} from './particle/background';
-import Control from './engine/control';
+import Background from './particle/background';
 
 const adjustCanvas = (p: P5, cnv: P5.Renderer, side: number) => {
 
@@ -33,10 +32,10 @@ const scaleGame = (p: P5, cnv: P5.Renderer) => {
     adjustCanvas(p, cnv, side);
 
     // adjust font size
-    p.textSize(side * Core.TEXT_SIZE / 100);
+    p.textSize(side * Engine.TEXT_SIZE / 100);
 
     // return scale factor
-    return Core.GAME_LENGTH / side;
+    return Engine.GAME_LENGTH / side;
 
 };
 
@@ -105,4 +104,6 @@ const sketch = (p: P5) => {
 // create game instance of p5
 const game = new P5(sketch);
 
-const control = new Control();
+const control = new Engine.Control();
+
+window.v = new Engine.Vector(1, 1);

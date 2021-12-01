@@ -1,12 +1,12 @@
 import * as P5 from 'p5';
 
-import * as Core from '../engine/core';
+import * as Engine from '../engine';
 import Player from './player';
 import Enemy from './enemy';
 
 const RADIUS = 10;
 
-export default class Projectile extends Core.GameObjectCircle {
+export default class Projectile extends Engine.Body.BodyCircle {
 
     origin: Player | Enemy;
 

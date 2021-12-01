@@ -1,4 +1,4 @@
-import * as Core from '../core';
+import Vector from '../vector';
 import GamepadControl from './gamepad';
 import KeyboardControl from './keyboard';
 
@@ -6,13 +6,13 @@ import KeyboardControl from './keyboard';
 
 // Interface for input objects
 export interface InputState {
-    move: Core.Vector,
+    move: Vector,
     primaryFire: boolean;
     alternateFire: boolean;
 }
 
 export const defaultInputState = (): InputState => ({
-    move: new Core.Vector(0, 0),
+    move: Vector.zero,
     primaryFire: false,
     alternateFire: false,
 });

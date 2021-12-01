@@ -1,18 +1,18 @@
 import * as P5 from 'p5';
 
-import * as Core from '../engine/core';
+import * as Engine from '../engine';
 
 const MAX_HEALTH = 100;
 const WIDTH = 100;
 const HEIGHT = 100;
 
-export default class Player extends Core.GameObjectRect {
+export default class Player extends Engine.Body.BodyRect {
 
     health: number;
 
     constructor () {
 
-        super(Core.GAME_LENGTH / 2, Core.GAME_LENGTH / 2, HEIGHT, WIDTH);
+        super(Engine.GAME_LENGTH / 2, Engine.GAME_LENGTH / 2, HEIGHT, WIDTH);
         this.health = MAX_HEALTH;
 
     }

@@ -1,10 +1,9 @@
 import * as P5 from 'p5';
 
-import * as Core from '../engine/core';
-import * as Utility from '../engine/utility';
+import * as Engine from '../engine';
 
 export class Charge {
 
-    position: Core.Vector;
+    position: Engine.Vector;
 
 }

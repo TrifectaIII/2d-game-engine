@@ -1,7 +1,6 @@
 import * as P5 from 'p5';
 
-import * as Core from '../engine/core';
-import * as Utility from '../engine/utility';
+import * as Engine from '../engine';
 
 // Multiplicative factor for star size
 const SIZE_SCALE = 4;
@@ -14,13 +13,13 @@ class Star {
 
     proximity: number;
 
-    position: Core.Vector;
+    position: Engine.Vector;
 
     constructor () {
 
-        this.proximity = Utility.rand();
-        this.position = new Core.Vector(
-            Utility.rand(0, Core.GAME_LENGTH),
+        this.proximity = Engine.Utility.rand();
+        this.position = new Engine.Vector(
+            Engine.Utility.rand(0, Engine.GAME_LENGTH),
             -this.proximity * SIZE_SCALE,
         );
 
@@ -47,13 +46,13 @@ class Star {
 
     finished (): boolean {
 
-        return this.position.y > Core.GAME_LENGTH + this.proximity * SIZE_SCALE;
+        return this.position.y > Engine.GAME_LENGTH + this.proximity * SIZE_SCALE;
 
     }
 
 }
 
-export class Background {
+export default class Background {
 
     stars: Star[];
 
@@ -66,7 +65,7 @@ export class Background {
     update () {
 
         // create a new star
-        if (Utility.rand(0, 1) < SPAWN_RATE) this.stars.push(new Star());
+        if (Engine.Utility.rand() < SPAWN_RATE) this.stars.push(new Star());
 
         // update all stars
         this.stars.forEach((star: Star) => {
