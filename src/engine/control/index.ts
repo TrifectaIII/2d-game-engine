@@ -41,8 +41,8 @@ export default class Control {
             ? this.gamepadControl.getInputs()
             : this.keyboardControl.getInputs();
 
-        // normalize movement vector if magnitude is over 1
-        if (result.move.magnitude > 1) result.move = result.move.normalized();
+        // cap magnitude at 1
+        result.move = result.move.clampedMagnitude(1);
 
         return result;
 
