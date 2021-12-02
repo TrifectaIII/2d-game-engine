@@ -6,7 +6,7 @@ import Enemy from './enemy';
 
 const RADIUS = 10;
 
-export default class Projectile extends Engine.Body.BodyCircle {
+export default class Projectile extends Engine.Body.Circle {
 
     origin: Player | Enemy;
 
