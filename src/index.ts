@@ -105,5 +105,3 @@ const sketch = (p: P5) => {
 const game = new P5(sketch);
 
 const control = new Engine.Control();
-
-window.v = new Engine.Vector(1, 1);

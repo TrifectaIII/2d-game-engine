@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-magic-numbers */
+
 import {describe, expect, test} from '@jest/globals';
 
 import Vector from './vector';
