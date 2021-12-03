@@ -3,7 +3,7 @@
 
 import {describe, expect, test} from '@jest/globals';
 
-import Vector from './vector';
+import Vector from './';
 
 test('Gets and sets magnitude', () => {
 
@@ -97,18 +97,18 @@ test('Clamp the magnitude of a vector', () => {
 
 });
 
-test('Add two vectors', () => {
+// test('Add two vectors', () => {
 
-});
+// });
 
-test('Subtract two vectors', () => {
+// test('Subtract two vectors', () => {
 
-});
+// });
 
-test('Distance between two vectors', () => {
+// test('Distance between two vectors', () => {
 
-});
+// });
 
-test('Equality of two vectors', () => {
+// test('Equality of two vectors', () => {
 
-});
+// });
