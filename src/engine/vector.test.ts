@@ -73,3 +73,42 @@ test('Reverse a vector', () => {
     expect(rev.direction).toBeCloseTo(t.direction - Math.PI);
 
 });
+
+test('Rotate a vector', () => {
+
+    const t = new Vector(1, 0);
+    const rot = t.rotated(Math.PI / 2);
+    expect(rot.x).toBeCloseTo(0);
+    expect(rot.y).toBeCloseTo(1);
+    expect(rot.direction).toBeCloseTo(t.direction + Math.PI / 2);
+    expect(rot.magnitude).toBeCloseTo(t.magnitude);
+
+});
+
+test('Clamp the magnitude of a vector', () => {
+
+    const t = new Vector(10, 10);
+    const clamped = t.clampedMagnitude(1);
+    expect(clamped.magnitude).toBeCloseTo(1);
+    expect(clamped.direction).toBeCloseTo(t.direction);
+    const clampedHigh = t.clampedMagnitude(100);
+    expect(clampedHigh.magnitude).toBeCloseTo(t.magnitude);
+    expect(clampedHigh.direction).toBeCloseTo(t.direction);
+
+});
+
+test('Add two vectors', () => {
+
+});
+
+test('Subtract two vectors', () => {
+
+});
+
+test('Distance between two vectors', () => {
+
+});
+
+test('Equality of two vectors', () => {
+
+});
