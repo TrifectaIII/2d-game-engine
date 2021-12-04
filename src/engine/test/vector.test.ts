@@ -3,7 +3,7 @@
 
 import {describe, expect, test} from '@jest/globals';
 
-import Vector from './';
+import Vector from '../vector';
 
 test('Gets and sets magnitude', () => {
 
