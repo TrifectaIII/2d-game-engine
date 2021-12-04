@@ -35,6 +35,17 @@ test('Gets and sets direction', () => {
 
 });
 
+test('Copies a vector to a new object', () => {
+
+    const t = new Vector(5, 7);
+    const copied = t.copy();
+    copied.x = 10;
+    expect(t.x).toBeCloseTo(5);
+    expect(copied.x).toBeCloseTo(10);
+    expect(copied.y).toBeCloseTo(t.y);
+
+});
+
 test('Normalize a vector', () => {
 
     const t = new Vector(100, 100);
@@ -97,18 +108,41 @@ test('Clamp the magnitude of a vector', () => {
 
 });
 
-// test('Add two vectors', () => {
+test('Add two vectors', () => {
 
-// });
+    const t1 = new Vector(100, 50);
+    const t2 = new Vector(15, 200);
+    const added = Vector.add(t1, t2);
+    expect(added.x).toBeCloseTo(115);
+    expect(added.y).toBeCloseTo(250);
 
-// test('Subtract two vectors', () => {
+});
 
-// });
+test('Subtract two vectors', () => {
 
-// test('Distance between two vectors', () => {
+    const t1 = new Vector(100, 50);
+    const t2 = new Vector(15, 200);
+    const sub = Vector.subtract(t1, t2);
+    expect(sub.x).toBeCloseTo(85);
+    expect(sub.y).toBeCloseTo(-150);
 
-// });
+});
 
-// test('Equality of two vectors', () => {
+test('Distance between two vectors', () => {
 
-// });
+    const t1 = new Vector(0, 50);
+    const t2 = new Vector(0, -50);
+    const dis = Vector.distance(t1, t2);
+    expect(dis).toBeCloseTo(100);
+
+});
+
+test('Equality of two vectors', () => {
+
+    const t1 = new Vector(100, 100);
+    const t2 = t1.copy();
+    expect(Vector.equal(t1, t2)).toBe(true);
+    t2.x = 10;
+    expect(Vector.equal(t1, t2)).toBe(false);
+
+});
