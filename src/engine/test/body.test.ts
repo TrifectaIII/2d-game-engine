@@ -17,9 +17,15 @@ import {Rect, Circle} from '../body';
 
 // });
 
-// test('Circle to circle collision', () => {
+test('Circle to circle collision', () => {
 
-// });
+    const t1 = new Circle(-10, 0, 5);
+    const t2 = new Circle(10, 0, 15);
+    expect(t1.collides(t2)).toBeFalsy();
+    t2.position.x = 9;
+    expect(t1.collides(t2)).toBeTruthy();
+
+});
 
 // test('Rect to circle collision', () => {
 
