@@ -9,9 +9,24 @@ import {Rect, Circle} from '../body';
 
 // });
 
-// test('Getting and setting Circle properties', () => {
+test('Getting and setting Circle properties', () => {
 
-// });
+    const t = new Circle(100, 10, 5);
+    expect(t.right).toBeCloseTo(105);
+    expect(t.left).toBeCloseTo(95);
+    expect(t.top).toBeCloseTo(5);
+    expect(t.bottom).toBeCloseTo(15);
+
+    t.right = 50;
+    expect(t.position.x).toBeCloseTo(45);
+    t.left = 200;
+    expect(t.position.x).toBeCloseTo(205);
+    t.top = -300;
+    expect(t.position.y).toBeCloseTo(-295);
+    t.bottom = 1000;
+    expect(t.position.y).toBeCloseTo(995);
+
+});
 
 // test('Rect to rect collision', () => {
 
