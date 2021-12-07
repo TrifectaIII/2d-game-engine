@@ -5,9 +5,24 @@ import {describe, expect, test} from '@jest/globals';
 
 import {Rect, Circle} from '../body';
 
-// test('Getting and setting Rect properties', () => {
+test('Getting and setting Rect properties', () => {
 
-// });
+    const t = new Rect(100, 50, 10, 20);
+    expect(t.right).toBeCloseTo(105);
+    expect(t.left).toBeCloseTo(95);
+    expect(t.top).toBeCloseTo(40);
+    expect(t.bottom).toBeCloseTo(60);
+
+    t.right = -100;
+    expect(t.position.x).toBeCloseTo(-105);
+    t.left = 98;
+    expect(t.position.x).toBeCloseTo(103);
+    t.top = -50;
+    expect(t.position.y).toBeCloseTo(-40);
+    t.bottom = 999;
+    expect(t.position.y).toBeCloseTo(989);
+
+});
 
 test('Getting and setting Circle properties', () => {
 
