@@ -43,17 +43,31 @@ test('Getting and setting Circle properties', () => {
 
 });
 
-// test('Rect to rect collision', () => {
+test('Rect to rect collision', () => {
 
-// });
+    const t1 = new Rect(100, 100, 10, 10);
+    const t2 = new Rect(90, 90, 10, 10);
+    expect(t1.collides(t2)).toBeFalsy();
+    expect(t2.collides(t1)).toBeFalsy();
+    t2.position.x = 95;
+    t2.position.y = 95;
+    expect(t1.collides(t2)).toBeTruthy();
+    expect(t2.collides(t1)).toBeTruthy();
+    t2.position.y = 110;
+    expect(t1.collides(t2)).toBeFalsy();
+    expect(t2.collides(t1)).toBeFalsy();
+
+});
 
 test('Circle to circle collision', () => {
 
     const t1 = new Circle(-10, 0, 5);
     const t2 = new Circle(10, 0, 15);
     expect(t1.collides(t2)).toBeFalsy();
+    expect(t2.collides(t1)).toBeFalsy();
     t2.position.x = 9;
     expect(t1.collides(t2)).toBeTruthy();
+    expect(t2.collides(t1)).toBeTruthy();
 
 });
 
