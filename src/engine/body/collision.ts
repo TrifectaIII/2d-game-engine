@@ -14,10 +14,31 @@ export const circleCollision = (a: BodyCircle, b: BodyCircle): boolean => (
     Vector.distance(a.position, b.position) < a.radius + b.radius
 );
 
-// only checks to see if center of circle is in rect
-export const rectCircleCollision = (rect: BodyRect, circle: BodyCircle): boolean => (
-    circle.position.x > rect.left &&
-    circle.position.x < rect.right &&
-    circle.position.y > rect.top &&
-    circle.position.y < rect.bottom
-);
+export const rectCircleCollision = (rect: BodyRect, circle: BodyCircle): boolean => {
+
+    // corners are like circle to circle collision
+    if (
+        circle.collides(new BodyCircle(rect.right, rect.top, 0)) ||
+        circle.collides(new BodyCircle(rect.right, rect.bottom, 0)) ||
+        circle.collides(new BodyCircle(rect.left, rect.top, 0)) ||
+        circle.collides(new BodyCircle(rect.left, rect.bottom, 0))
+    ) return true;
+
+    // edges are two rects
+    const cPoint = new BodyRect(circle.position.x, circle.position.y, 0, 0);
+    return (
+        cPoint.collides(new BodyRect(
+            rect.position.x,
+            rect.position.y,
+            rect.width + circle.radius * 2,
+            rect.height,
+        )) ||
+        cPoint.collides(new BodyRect(
+            rect.position.x,
+            rect.position.y,
+            rect.width,
+            rect.height + circle.radius * 2,
+        ))
+    );
+
+};
