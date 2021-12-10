@@ -10,9 +10,9 @@ export default class Enemy extends Engine.Body.Rect {
 
     health: number;
 
-    constructor () {
+    constructor (x = 0, y = 0) {
 
-        super(Engine.GAME_LENGTH / 2, 0, HEIGHT, WIDTH);
+        super(x, y, HEIGHT, WIDTH);
         this.health = MAX_HEALTH;
 
     }

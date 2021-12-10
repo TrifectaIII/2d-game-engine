@@ -7,6 +7,7 @@ import * as Engine from './engine';
 
 import Player from './object/player';
 import Enemy from './object/enemy';
+import Projectile from './object/projectile';
 
 import Background from './particle/background';
 
@@ -35,7 +36,7 @@ const scaleGame = (p: P5, cnv: P5.Renderer) => {
     p.textSize(side * Engine.TEXT_SIZE / 100);
 
     // return scale factor
-    return Engine.GAME_LENGTH / side;
+    return Engine.GAME_WIDTH / side;
 
 };
 
@@ -48,6 +49,7 @@ const sketch = (p: P5) => {
     let background: Background;
     let enemy: Enemy;
     let player: Player;
+    let projectile: Projectile;
 
     p.preload = () => {
 
@@ -72,7 +74,8 @@ const sketch = (p: P5) => {
 
         // Create gameobjects for testing
         player = new Player();
-        enemy = new Enemy();
+        enemy = new Enemy(500, 500);
+        projectile = new Projectile(300, 300, player);
 
     };
 
@@ -94,6 +97,7 @@ const sketch = (p: P5) => {
         background.update();
         background.draw(p, scaleFactor);
 
+        projectile.draw(p, scaleFactor);
         player.draw(p, scaleFactor);
         enemy.draw(p, scaleFactor);
 

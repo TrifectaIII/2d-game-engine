@@ -19,7 +19,7 @@ class Star {
 
         this.proximity = Engine.Utility.rand();
         this.position = new Engine.Vector(
-            Engine.Utility.rand(0, Engine.GAME_LENGTH),
+            Engine.Utility.rand(0, Engine.GAME_WIDTH),
             -this.proximity * SIZE_SCALE,
         );
 
@@ -46,7 +46,7 @@ class Star {
 
     finished (): boolean {
 
-        return this.position.y > Engine.GAME_LENGTH + this.proximity * SIZE_SCALE;
+        return this.position.y > Engine.GAME_HEIGHT + this.proximity * SIZE_SCALE;
 
     }
 

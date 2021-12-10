@@ -10,9 +10,9 @@ export default class Player extends Engine.Body.Rect {
 
     health: number;
 
-    constructor () {
+    constructor (x = 0, y = 0) {
 
-        super(Engine.GAME_LENGTH / 2, Engine.GAME_LENGTH / 2, HEIGHT, WIDTH);
+        super(x, y, HEIGHT, WIDTH);
         this.health = MAX_HEALTH;
 
     }
@@ -26,11 +26,18 @@ export default class Player extends Engine.Body.Rect {
         p.stroke('black');
         p.strokeWeight(1);
 
-        p.triangle(
-            this.position.x / scaleFactor,
-            this.top / scaleFactor,
+        // p.triangle(
+        //     this.position.x / scaleFactor,
+        //     this.top / scaleFactor,
+        //     this.left / scaleFactor,
+        //     this.bottom / scaleFactor,
+        //     this.right / scaleFactor,
+        //     this.bottom / scaleFactor,
+        // );
+
+        p.rect(
             this.left / scaleFactor,
-            this.bottom / scaleFactor,
+            this.top / scaleFactor,
             this.right / scaleFactor,
             this.bottom / scaleFactor,
         );
