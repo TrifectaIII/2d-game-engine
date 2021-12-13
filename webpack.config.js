@@ -1,3 +1,6 @@
+/* eslint-disable require-unicode-regexp */
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
@@ -6,7 +9,7 @@ module.exports = {
     devtool: 'source-map',
     // mode: 'production',
     // devtool: false,
-    entry: path.resolve(__dirname, './src/index.ts'),
+    entry: path.resolve(__dirname, './src/demo/index.ts'),
 
     // settings for dev server (npm start)
     devServer: {
@@ -17,28 +20,28 @@ module.exports = {
 
     module: {
         rules: [
-            //ts rule
+            // ts rule
             {
                 test: /\.tsx?$/,
                 use: 'babel-loader',
                 exclude: /node_modules/,
             },
-            //css rule
+            // css rule
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
+                use: ['style-loader', 'css-loader'],
             },
         ],
     },
 
     resolve: {
-        extensions: [ '.tsx', '.ts', '.js' ],
+        extensions: ['.tsx', '.ts', '.js'],
     },
 
-    //will build html from src file, injecting script tag automatically.
+    // will build html from src file, injecting script tag automatically.
     plugins: [
         new HTMLWebpackPlugin({
-            template: 'src/index.html',
+            template: 'src/demo/index.html',
         }),
     ],
 

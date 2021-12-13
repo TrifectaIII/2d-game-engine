@@ -3,7 +3,7 @@ import 'normalize.css';
 
 import './style.css';
 
-import * as Engine from './engine';
+import * as Engine from '../engine';
 
 import Player from './object/player';
 import Enemy from './object/enemy';

@@ -71,6 +71,24 @@ test('Circle to circle collision', () => {
 
 });
 
-// test('Rect to circle collision', () => {
+test('Rect to circle collision', () => {
 
-// });
+    // corner collision
+    const rect = new Rect(100, -100, 10, 10);
+    const circ = new Circle(95, -90, 5);
+    expect(rect.collides(circ)).toBeFalsy();
+    expect(circ.collides(rect)).toBeFalsy();
+    circ.position.y = -95;
+    expect(rect.collides(circ)).toBeTruthy();
+    expect(circ.collides(rect)).toBeTruthy();
+
+    // side collision
+    const rect2 = new Rect(-100, 100, 10, 40);
+    const circ2 = new Circle(-110, 100, 5);
+    expect(rect2.collides(circ2)).toBeFalsy();
+    expect(circ2.collides(rect2)).toBeFalsy();
+    circ2.position.x = -109;
+    expect(rect2.collides(circ2)).toBeTruthy();
+    expect(circ2.collides(rect2)).toBeTruthy();
+
+});

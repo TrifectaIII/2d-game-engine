@@ -1,6 +1,6 @@
 import * as P5 from 'p5';
 
-import * as Engine from '../engine';
+import * as Engine from '../../engine';
 
 // Multiplicative factor for star size
 const SIZE_SCALE = 4;

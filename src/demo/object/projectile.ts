@@ -1,6 +1,6 @@
 import * as P5 from 'p5';
 
-import * as Engine from '../engine';
+import * as Engine from '../../engine';
 import Player from './player';
 import Enemy from './enemy';
 
