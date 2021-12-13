@@ -4,7 +4,7 @@
 export * from './constant';
 
 // load combined Control class into main module scope
-export {default as Control} from './control';
+// export {default as Control} from './control';
 
 // load Vector class into main module scope
 export {default as Vector} from './vector';

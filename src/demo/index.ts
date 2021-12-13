@@ -108,4 +108,4 @@ const sketch = (p: P5) => {
 // create game instance of p5
 const game = new P5(sketch);
 
-const control = new Engine.Control();
+// const control = new Engine.Control();
